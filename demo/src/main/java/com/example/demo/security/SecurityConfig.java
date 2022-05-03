@@ -13,11 +13,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomOAuth2UserService customOAuth2UserService;
 
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().headers().frameOptions().disable();
-        http.authorizeRequests().antMatchers("/","/css/**","/images/**","/js/**").permitAll()
+        http.authorizeRequests().antMatchers("/", "/css/**", "/images/**", "/js/**", "/login/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .logout().logoutSuccessUrl("/")
                 .and()
